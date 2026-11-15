@@ -9,12 +9,14 @@ const db = client.db("bazar-dor");
 
 client.on("error", (error) => {
   // Gracefully log DB warnings without crashing the app process
-  console.warn("[MongoDB connection]", error instanceof Error ? error.message : error);
+  console.warn(
+    "[MongoDB connection]",
+    error instanceof Error ? error.message : error,
+  );
 });
 
 export const auth = betterAuth({
-  baseURL:
-    process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
 
   trustedOrigins: [
     "http://localhost:3000",
@@ -23,7 +25,8 @@ export const auth = betterAuth({
   ],
 
   secret:
-    process.env.BETTER_AUTH_SECRET || "bazar-dor-secure-secret-key-must-be-long-enough",
+    process.env.BETTER_AUTH_SECRET ||
+    "bazar-dor-secure-secret-key-must-be-long-enough",
 
   emailAndPassword: {
     enabled: true,

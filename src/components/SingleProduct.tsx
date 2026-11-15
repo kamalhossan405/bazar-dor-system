@@ -28,13 +28,13 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
     ? Math.round(
         markets.reduce(
           (sum, m) => sum + (Number(m.min) + Number(m.max)) / 2,
-          0
-        ) / markets.length
+          0,
+        ) / markets.length,
       )
     : Number(product.today);
 
   const diff = Math.abs(
-    Number(product.today) - Number(product.yesterday || product.today)
+    Number(product.today) - Number(product.yesterday || product.today),
   );
 
   const isUp = product.change?.dir === "up";
@@ -70,7 +70,8 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
                 </span>
               </div>
               <p className="mt-1 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
-                {product.nameEn} • প্রতি {product.unit} এর বর্তমান খুচরা বাজার দর
+                {product.nameEn} • প্রতি {product.unit} এর বর্তমান খুচরা বাজার
+                দর
               </p>
             </div>
           </div>
@@ -89,13 +90,19 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
               {isUp && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-bold text-rose-700 dark:bg-rose-950/70 dark:text-rose-300">
                   <TrendingUp size={13} />
-                  <span>গতকালের তুলনায় আজ ৳ {diff.toLocaleString("bn-BD")} বেড়েছে (+{product.change.pct}%)</span>
+                  <span>
+                    গতকালের তুলনায় আজ ৳ {diff.toLocaleString("bn-BD")} বেড়েছে (+
+                    {product.change.pct}%)
+                  </span>
                 </span>
               )}
               {isDown && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300">
                   <TrendingDown size={13} />
-                  <span>গতকালের তুলনায় আজ ৳ {diff.toLocaleString("bn-BD")} কমেছে (-{Math.abs(Number(product.change.pct))}%)</span>
+                  <span>
+                    গতকালের তুলনায় আজ ৳ {diff.toLocaleString("bn-BD")} কমেছে (-
+                    {Math.abs(Number(product.change.pct))}%)
+                  </span>
                 </span>
               )}
               {!isUp && !isDown && (
@@ -112,7 +119,10 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
       {/* Price Summary 3-Card Grid */}
       <div>
         <div className="mb-3 flex items-center gap-2">
-          <BarChart3 size={18} className="text-emerald-600 dark:text-emerald-400" />
+          <BarChart3
+            size={18}
+            className="text-emerald-600 dark:text-emerald-400"
+          />
           <h2 className="text-lg font-bold text-gray-900 sm:text-xl dark:text-white">
             দামের সারসংক্ষেপ
           </h2>
@@ -164,7 +174,10 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs dark:border-gray-800 dark:bg-gray-900">
         <div className="border-b border-gray-100 p-4 sm:p-5 dark:border-gray-800">
           <div className="flex items-center gap-2">
-            <MapPin size={18} className="text-emerald-600 dark:text-emerald-400" />
+            <MapPin
+              size={18}
+              className="text-emerald-600 dark:text-emerald-400"
+            />
             <h3 className="text-base font-bold text-gray-900 sm:text-lg dark:text-white">
               বাজারভিত্তিক আজকের দরতালিকা
             </h3>
@@ -189,7 +202,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
               {markets.length > 0 ? (
                 markets.map((item, index) => {
                   const itemAvg = Math.round(
-                    (Number(item.max) + Number(item.min)) / 2
+                    (Number(item.max) + Number(item.min)) / 2,
                   );
                   return (
                     <tr
